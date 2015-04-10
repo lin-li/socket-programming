@@ -1,0 +1,57 @@
+Full Name : Lin Li
+Student ID : 2762-5473-99
+
+Implementation :
+
+1. Implemented all the requirements of Phase 1, Phase 2 and Phase 3.
+
+2. Created a makefile to make compilation easier. 
+
+3. Implemented multithreading to support concurrency in Health Center Server.
+
+4. Used the fork() function to create processes for Doctor 1 and Doctor 2 using only one C file. 
+
+
+Files :
+
+1. patient1.c : The code for Patient 1. The program reads the username and password from a file and sends the message to the health center server over a TCP port that it has created. It then recieves the authentication response. On a positive response it will ask for the available slots and make a reservation. Once the reservation is succuessful, it will establish a UDP socket to coummunicate with its designated doctor using the UDP port number of the doctor it got from the health center server, and ask for insurance information.
+
+2. patient2.c : The code for Patient 2. The program reads the username and password from a file and sends the message to the health center server over a TCP port that it has created. It then recieves the authentication response. On a positive response it will ask for the available slots and make a reservation. Once the reservation is succuessful, it will establish a UDP socket to coummunicate with its designated doctor using the UDP port number of the doctor it got from the health center server, and ask for insurance information.
+
+3. healthcenterserver.c : The code for Health Center Server. The program uses the pthread_create() function to create concurrent threads. The main thread of the server listens on its assigned TCP port. Everytime it receives a request, it will create a child thread to perform the service. 
+
+4. doctor.c : The code for Doctor 1 and Doctor 2. The program uses the fork() function to create a child process. Either of the two processes (the father process and the child process) listens on its assigned UDP port. Everytime it receives a request, it will respond back with the required information using the same UDP socket.
+
+5. makefile : The makefile for compilation of code.
+
+
+To run the program :
+
+To compile the code please type :
+
+make
+
+After clean compilation of code, to run type 
+
+./healthcenterserveroutput
+./doctoroutput
+./patient1output
+./patient2output
+
+each one in a different instance and following the above mentioned order.
+
+
+Format of All the Messages Exchanged :
+
+The format of messages exchanged is the same as the format given in project description
+
+
+Adiosyncrasy :
+
+The program will run well if you follow the steps given in project description
+
+
+Reused Codes :
+
+Code has heavily been used from the beej's guide to socket programming which has proven to be an invaluable asset for the purpose of this project.
+
